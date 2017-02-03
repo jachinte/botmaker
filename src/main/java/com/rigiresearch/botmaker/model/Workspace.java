@@ -1,11 +1,7 @@
-package com.rigiresearch.botmaker;
+package com.rigiresearch.botmaker.model;
 
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import com.rigiresearch.botmaker.model.Entity;
-import com.rigiresearch.botmaker.model.JsonObject;
-import com.rigiresearch.botmaker.model.Question;
 
 /**
  * Represents a Watson conversation workspace

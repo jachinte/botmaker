@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 import com.rigiresearch.botmaker.model.Entity;
 import com.rigiresearch.botmaker.model.OpenQuestion;
 import com.rigiresearch.botmaker.model.Question;
+import com.rigiresearch.botmaker.model.Workspace;
 
 public class Example {
 	
