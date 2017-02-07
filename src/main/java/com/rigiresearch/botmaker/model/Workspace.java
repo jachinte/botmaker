@@ -35,6 +35,11 @@ public final class Workspace implements JsonObject {
 		this.data = data;
 	}
 	
+	/**
+	 * Calculates the superset of this workspace's entities
+	 * 
+	 * @return The superset
+	 */
 	public List<Set<Entity>> superSet() {
 		List<Entity> entities = this.data.keySet().stream().collect(Collectors.toList());
 		int allMasks = (1 << entities.size());

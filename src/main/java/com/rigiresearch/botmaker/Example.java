@@ -43,13 +43,6 @@ public class Example {
 		Workspace workspace = new Workspace("recipes", main.data());
 		System.out.println(workspace.toJson());
 		System.out.println(workspace.superSet());
-		
-//		List<List<Entity>> entities = main.data().keySet().stream().map(e -> {
-//			List<Entity> singleton = new ArrayList<Entity>();
-//			singleton.add(e);
-//			return singleton;
-//		}).collect(Collectors.toList());
-//		System.out.println(workspace.getAllCombinations(entities, entities.size()));
 	}
 
 }
