@@ -96,14 +96,7 @@ public final class Entity implements JsonObject {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s: [%s]", name, this.values.keySet().stream().map(key -> {
-			String list = Entity.this.values
-					.get(key)
-					.stream()
-					.collect(Collectors.joining(","));
-			return String.format("%s: %s", key, list);
-		})
-		.collect(Collectors.joining("; ")));
+		return String.format("%s", this.name);
 	}
 
 }

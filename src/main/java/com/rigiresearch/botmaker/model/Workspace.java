@@ -1,6 +1,10 @@
 package com.rigiresearch.botmaker.model;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -31,10 +35,18 @@ public final class Workspace implements JsonObject {
 		this.data = data;
 	}
 	
-	public String generate() {
-		String output = "";
-		
-		return output;
+	public List<Set<Entity>> superSet() {
+		List<Entity> entities = this.data.keySet().stream().collect(Collectors.toList());
+		int allMasks = (1 << entities.size());
+		List<Set<Entity>> superSet = new ArrayList<Set<Entity>>();
+		for (int i = 1; i < allMasks; i++) {
+			Set<Entity> set = new HashSet<Entity>();
+		    for (int j = 0; j < entities.size(); j++)
+			    if ((i & (1 << j)) > 0)
+			        set.add(entities.get(j));
+		    superSet.add(set);
+		}
+		return superSet;
 	}
 
 	/*

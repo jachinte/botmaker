@@ -16,23 +16,40 @@ public class Example {
 	public Map<Entity, Question> data() {
 		Map<Entity, Question> data = new HashMap<Entity, Question>();
 		// Food type
-		Map<String, List<String>> typeValues = new HashMap<String, List<String>>();
-		Stream.of("breakfast", "main course", "dessert", "side dish",
-				"appetizer", "salad", "bread", "lunch", "dinner", "drink")
-				.forEach(value -> typeValues.put(value, Collections.emptyList()));
-		data.put(new Entity("food_type", typeValues), new OpenQuestion("Which type of food would you like to cook?"));
+		data.put(
+				new Entity("food_type",
+						values("breakfast", "main course", "dessert", "side dish", "appetizer", "salad", "bread",
+								"lunch", "dinner", "drink")),
+				new OpenQuestion("Which type of food would you like to cook?"));
 		// Cuisine
-		Map<String, List<String>> cuisineValues = new HashMap<String, List<String>>();
-		Stream.of("african", "american", "british", "cajun", "french") // ...
-				.forEach(value -> cuisineValues.put(value, Collections.emptyList()));
-		data.put(new Entity("cuisine", cuisineValues), new OpenQuestion("Which type of cuisine are you feeling like cooking today?"));
+		data.put(new Entity("cuisine", values("african", "american", "british", "cajun", "french")),
+				new OpenQuestion("Which type of cuisine are you feeling like cooking today?"));
+		// Whatever
+		data.put(new Entity("whatever", values("value1", "value2")),
+				new OpenQuestion("Whatever question?"));
+		data.put(new Entity("another", values("value3", "value4")),
+				new OpenQuestion("Another whatever question?"));
 		return data;
+	}
+	
+	public Map<String, List<String>> values(String... names) {
+		Map<String, List<String>> values = new HashMap<String, List<String>>();
+		Stream.of(names).forEach(value -> values.put(value, Collections.emptyList()));
+		return values;
 	}
 	
 	public static void main(String[] args) {
 		Example main = new Example();
 		Workspace workspace = new Workspace("recipes", main.data());
 		System.out.println(workspace.toJson());
+		System.out.println(workspace.superSet());
+		
+//		List<List<Entity>> entities = main.data().keySet().stream().map(e -> {
+//			List<Entity> singleton = new ArrayList<Entity>();
+//			singleton.add(e);
+//			return singleton;
+//		}).collect(Collectors.toList());
+//		System.out.println(workspace.getAllCombinations(entities, entities.size()));
 	}
 
 }
