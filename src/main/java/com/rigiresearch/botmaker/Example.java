@@ -41,7 +41,7 @@ public class Example {
 	public static void main(String[] args) {
 		Example main = new Example();
 		Workspace workspace = new Workspace("recipes", main.data());
-		System.out.println(workspace.toJson());
+		System.out.println(workspace.json());
 		System.out.println(workspace.superSet());
 	}
 
