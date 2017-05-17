@@ -19,26 +19,21 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package com.rigiresearch.botmaker;
-
-import com.rigiresearch.botmaker.model.OpenEnded;
-import com.rigiresearch.botmaker.model.watson.WatsonQuestion;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+package com.rigiresearch.botmaker.model;
 
 /**
- * @author Miguel Jiménez
- * @date 2017-02-02
+ * Represents the simplest element in a formula.
+ * @author Miguel Jimenez (miguel@uvic.ca)
+ * @date 2017-05-09
+ * @version $Id$
+ * @since 0.0.1
  */
-public class OpenQuestionTest {
+public interface Term {
 
-	/**
-	 * OpenQuestion can transform an instance to its JSON representation
-	 */
-	@Test
-	public void testToJson() {
-		WatsonQuestion question = new WatsonQuestion(new OpenEnded("How are you?"));
-		assertEquals(question.json(), "{\"statement\":\"How are you?\"}");
-	}
+    /**
+     * Evaluates this term to a value.
+     * @return this term's value
+     */
+    Object value();
 
 }

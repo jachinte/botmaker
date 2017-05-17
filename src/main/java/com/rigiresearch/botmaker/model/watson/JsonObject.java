@@ -19,27 +19,22 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package com.rigiresearch.botmaker.model;
+package com.rigiresearch.botmaker.model.watson;
+
+import java.io.Serializable;
 
 /**
- * Utility interface to enforce JSON support
+ * Utility interface to enforce JSON support.
  * 
  * @author Miguel Jiménez
  * @date 2017-02-02
  */
-public interface JsonObject {
+public interface JsonObject extends Serializable {
 
 	/**
+	 * Transform this object to JSON.
 	 * @return The JSON representation of {@code this} object
 	 */
 	public String json();
-
-	/**
-	 * Populates this object's data from its JSON representation
-	 * 
-	 * @param json
-	 *            The JSON representation of {@code this} object
-	 */
-	public void configureFromJson(String json);
 
 }

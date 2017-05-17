@@ -19,56 +19,47 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package com.rigiresearch.botmaker.model;
+package com.rigiresearch.botmaker.model.watson;
+
+import com.rigiresearch.botmaker.model.Question;
 
 /**
- * Represents an open question
- * 
- * @author Miguel Jiménez
- * @date 2017-02-02
+ * Question decorator to represent a conversation's question.
+ * @author Miguel Jimenez (miguel@uvic.ca)
+ * @date 2017-05-09
+ * @version $Id$
+ * @since 0.0.1
  */
-public final class OpenQuestion implements Question {
+public class WatsonQuestion implements JsonObject {
 
-	/**
-	 * This question's statement
-	 */
-	private final String statement;
+    /**
+     * Serial version UID.
+     */
+    private static final long serialVersionUID = 4220875429919577781L;
 
-	/**
-	 * Instantiates an open question based on a statement
-	 * 
-	 * @param statement
-	 *            This question's statement
-	 */
-	public OpenQuestion(final String statement) {
-		this.statement = statement;
-	}
+    /**
+     * The decorated question.
+     */
+    private final Question origin;
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.rigiresearch.botmaker.model.JsonObject#json()
-	 */
-	@Override
-	public String json() {
-		return String.format("{\"statement\":\"%s\"}", this.statement);
-	}
+    /**
+     * Default constructor.
+     * @param question the question being decorated
+     */
+    public WatsonQuestion(final Question question) {
+        this.origin = question;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * @see com.rigiresearch.botmaker.model.JsonObject#configureFromJson(java.lang.String)
-	 */
-	@Override
-	public void configureFromJson(String json) {
-		throw new UnsupportedOperationException();
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return this.statement;
-	}
+    /*
+     * (non-Javadoc)
+     * @see com.rigiresearch.botmaker.model.JsonObject#json()
+     */
+    @Override
+    public String json() {
+        return String.format(
+            "{\"statement\":\"%s\"}",
+            this.origin.format()
+        );
+    }
 
 }

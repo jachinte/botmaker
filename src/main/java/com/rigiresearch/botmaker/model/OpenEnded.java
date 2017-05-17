@@ -19,26 +19,46 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package com.rigiresearch.botmaker;
-
-import com.rigiresearch.botmaker.model.OpenEnded;
-import com.rigiresearch.botmaker.model.watson.WatsonQuestion;
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
+package com.rigiresearch.botmaker.model;
 
 /**
+ * Represents an open-ended question.
+ * 
  * @author Miguel Jiménez
  * @date 2017-02-02
  */
-public class OpenQuestionTest {
+public final class OpenEnded implements Question {
+
+    /**
+	 * This question's statement.
+	 */
+	private final String statement;
 
 	/**
-	 * OpenQuestion can transform an instance to its JSON representation
+	 * Instantiates an open question based on a statement.
+	 * 
+	 * @param statement this question's statement
 	 */
-	@Test
-	public void testToJson() {
-		WatsonQuestion question = new WatsonQuestion(new OpenEnded("How are you?"));
-		assertEquals(question.json(), "{\"statement\":\"How are you?\"}");
+	public OpenEnded(final String statement) {
+		this.statement = statement;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.rigiresearch.botmaker.model.Question#format()
+	 */
+	@Override
+	public String format() {
+	    return this.statement;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return this.statement;
 	}
 
 }

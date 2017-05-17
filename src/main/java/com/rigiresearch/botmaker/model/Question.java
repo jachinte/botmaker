@@ -27,6 +27,12 @@ package com.rigiresearch.botmaker.model;
  * @author Miguel Jiménez
  * @date 2017-02-02
  */
-public interface Question extends JsonObject {
+public interface Question {
+
+    /**
+     * Formats this question in a proper string.
+     * @return a string representation of this question
+     */
+    String format();
 
 }

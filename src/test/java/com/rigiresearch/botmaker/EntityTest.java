@@ -21,17 +21,15 @@
  */
 package com.rigiresearch.botmaker;
 
-import static org.junit.Assert.*;
-
+import com.rigiresearch.botmaker.model.Entity;
+import com.rigiresearch.botmaker.model.watson.WatsonEntity;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
-
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
-import com.rigiresearch.botmaker.model.Entity;
 
 /**
  * @author Miguel Jiménez
@@ -40,7 +38,7 @@ import com.rigiresearch.botmaker.model.Entity;
 public final class EntityTest {
 	
 	private Entity getEntity1() {
-		Entity greeting = new Entity("greeting");
+		Entity.Simple greeting = new Entity.Simple("greeting");
 		greeting.addValue("hello", "good afternoon", "good evening",
 				"good morning", "hi", "howdy");
 		greeting.addValue("how's it going?", "how are things?", "how are you?",
@@ -54,7 +52,7 @@ public final class EntityTest {
 		Stream.of("breakfast", "main course", "dessert", "side dish",
 				"appetizer", "salad", "bread", "lunch", "dinner", "drink")
 				.forEach(value -> values.put(value, Collections.emptyList()));
-		return new Entity("food_type", values);
+		return new Entity.Simple("food_type", values);
 	}
 
 	/**
@@ -88,7 +86,7 @@ public final class EntityTest {
 				+ 			"]"
 				+ 		"}"
 				+ 	"]"
-				+ "}", getEntity1().json());
+				+ "}", new WatsonEntity(getEntity1()).json());
 	}
 	
 	/**
@@ -140,7 +138,7 @@ public final class EntityTest {
 				+ 			"\"synonyms\":[]"
 				+ 		"}"
 				+ 	"]"
-				+ "}", getEntity2().json());
+				+ "}", new WatsonEntity(getEntity2()).json());
 	}
 
 }
